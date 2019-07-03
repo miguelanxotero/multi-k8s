@@ -1,0 +1,18 @@
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Certificate
+metadata:
+  name: k8s-multi-test-otero-site-tls
+spec:
+  secretName: k8s-multi-test-otero-site
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: k8s-multi.test.otero.site
+  dnsNames:
+    - k8s-multi.test.otero.site
+  acme:
+    config:
+      - http01:
+          ingressClass: nginx
+        domains:
+          - k8s-multi.test.otero.site
